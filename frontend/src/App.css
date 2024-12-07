@@ -8,3 +8,7 @@
 .color-swatches-container {
   display: flex;
 }
+
+.fetch-colors-button {
+  margin: 40px auto;
+}
