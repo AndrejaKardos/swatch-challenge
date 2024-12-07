@@ -6,8 +6,13 @@ export class ColorsService {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
-  private generateRandomColorType(setOfColorTypes: string[]) {
-    return setOfColorTypes[Math.floor(Math.random() * setOfColorTypes.length)];
+  private generateRandomColorTypes(
+    colorTypes: string[],
+    numberOfColors: number,
+  ): string[] {
+    return [...Array(numberOfColors)].map(
+      () => colorTypes[Math.floor(Math.random() * colorTypes.length)],
+    );
   }
 
   private generateColor(type: string) {
@@ -31,9 +36,9 @@ export class ColorsService {
     }
   }
 
-  generateColorSet(colorTypes: string[] = ['rgb', 'hsl']) {
-    const randomColorType = this.generateRandomColorType(colorTypes);
+  generateColorSet() {
+    const randomColors = this.generateRandomColorTypes(['rgb', 'hsl'], 5);
 
-    return this.generateColor(randomColorType);
+    return randomColors.map((color) => this.generateColor(color));
   }
 }
