@@ -6,13 +6,20 @@ import { fetchColorSwatches } from "./apis/colorsApi";
 
 function App() {
   const [colorSwatches, setColorSwatches] = useState<Color[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleFetchColors = async () => {
+    setLoading(true);
+    setError(null);
+
     try {
       const colors = await fetchColorSwatches();
       setColorSwatches(colors);
     } catch (err) {
-      console.log("Failed to fetch color swatches. Please try again.");
+      setError("Failed to fetch color swatches. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -28,7 +35,12 @@ function App() {
         ))}
       </div>
 
-      <button onClick={handleFetchColors}>Fetch Colors</button>
+      {loading && <p>Loading color swatches...</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      <button onClick={handleFetchColors} disabled={loading}>
+        {loading ? "Fetching..." : "Fetch Colors"}
+      </button>
     </div>
   );
 }
