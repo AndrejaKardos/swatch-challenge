@@ -27,9 +27,9 @@ export class ColorsService {
       case 'hsl':
         return {
           type: 'hsl',
-          hue: `${this.getRandomNumber(0, 360)}%`,
-          saturation: `${this.getRandomNumber(0, 100)}%`,
-          lightness: `${this.getRandomNumber(0, 100)}%`,
+          hue: this.getRandomNumber(0, 360),
+          saturation: this.getRandomNumber(0, 100),
+          lightness: this.getRandomNumber(0, 100),
         };
       default:
         return;
