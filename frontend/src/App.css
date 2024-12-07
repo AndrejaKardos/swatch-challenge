@@ -12,3 +12,14 @@
 .fetch-colors-button {
   margin: 40px auto;
 }
+
+.button-container {
+  min-height: 50px;
+}
+
+.loading-container {
+  height: 20px;
+  overflow: hidden;
+  position: relative;
+  margin-top: 10px;
+}

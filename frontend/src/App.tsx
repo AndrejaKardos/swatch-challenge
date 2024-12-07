@@ -35,16 +35,20 @@ function App() {
         ))}
       </div>
 
-      {loading && <p>Loading color swatches...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      <div className="button-container">
+        <button
+          className={"fetch-colors-button"}
+          onClick={handleFetchColors}
+          disabled={loading}
+        >
+          {loading ? "Fetching..." : "Fetch Colors"}
+        </button>
 
-      <button
-        className={"fetch-colors-button"}
-        onClick={handleFetchColors}
-        disabled={loading}
-      >
-        {loading ? "Fetching..." : "Fetch Colors"}
-      </button>
+        <div className="loading-container">
+          {loading && <p>Loading color swatches...</p>}
+          {error && <p style={{ color: "red" }}>{error}</p>}
+        </div>
+      </div>
     </div>
   );
 }
