@@ -37,6 +37,7 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({ color }) => {
           width: "200px",
           height: "200px",
           borderRadius: "8px",
+          margin: "40px 2px",
         }}
       ></div>
       <p>Color Type: {color.type.toUpperCase()}</p>
