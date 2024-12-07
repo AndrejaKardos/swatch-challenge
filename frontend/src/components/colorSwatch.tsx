@@ -1,27 +1,46 @@
 import React from "react";
 
-export const ColorSwatch: React.FC = () => {
-  const color = {
-    type: "rgb",
-    red: 126,
-    green: 9,
-    blue: 41,
+interface ColorSwatchProps {
+  color: {
+    type: string;
+    [key: string]: any;
+  };
+}
+
+export const ColorSwatch: React.FC<ColorSwatchProps> = ({ color }) => {
+  const getColorType = (color: { type: string; [key: string]: any }) => {
+    switch (color.type) {
+      case "rgb":
+        return `rgb(${color.red}, ${color.green}, ${color.blue})`;
+      case "hsl":
+        return `hsl(${color.hue}, ${color.saturation}, ${color.lightness})`;
+      default:
+        return;
+    }
   };
 
-  const rgbColor = `rgb(${color.red}, ${color.green}, ${color.blue})`;
+  const formatKey = (key: string) => key.charAt(0).toUpperCase() + key.slice(1);
+
+  const displayColorProperties = Object.entries(color)
+    .filter(([key]) => key !== "type") // Filter out the "type" key
+    .map(([key, value]) => (
+      <p key={key}>
+        {formatKey(key)}: {value}
+      </p>
+    ));
 
   return (
     <div>
       <div
         style={{
-          backgroundColor: rgbColor,
+          backgroundColor: getColorType(color),
           width: "200px",
           height: "200px",
           borderRadius: "8px",
         }}
       ></div>
-      <p>Color Type: {color.type}</p>
-      <p>RGB: {rgbColor}</p>
+      <p>Color Type: {color.type.toUpperCase()}</p>
+      {displayColorProperties}
     </div>
   );
 };
