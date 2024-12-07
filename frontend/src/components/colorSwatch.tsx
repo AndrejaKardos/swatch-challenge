@@ -13,7 +13,7 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({ color }) => {
       case "rgb":
         return `rgb(${color.red}, ${color.green}, ${color.blue})`;
       case "hsl":
-        return `hsl(${color.hue}, ${color.saturation}, ${color.lightness})`;
+        return `hsl(${color.hue}, ${color.saturation}%, ${color.lightness}%)`;
       default:
         return;
     }
@@ -22,7 +22,7 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({ color }) => {
   const formatKey = (key: string) => key.charAt(0).toUpperCase() + key.slice(1);
 
   const displayColorProperties = Object.entries(color)
-    .filter(([key]) => key !== "type") // Filter out the "type" key
+    .filter(([key]) => key !== "type")
     .map(([key, value]) => (
       <p key={key}>
         {formatKey(key)}: {value}
