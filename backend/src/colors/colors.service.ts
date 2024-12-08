@@ -16,7 +16,7 @@ export class ColorsService {
   }
 
   private generateColor(type: string) {
-    switch (type) {
+    switch (type.toLowerCase()) {
       case 'rgb':
         return {
           type: 'rgb',
