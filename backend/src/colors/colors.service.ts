@@ -36,8 +36,18 @@ export class ColorsService {
     }
   }
 
-  generateColorSet() {
-    const randomColors = this.generateRandomColorTypes(['rgb', 'hsl'], 5);
+  generateColorSet(colorTypes: string[], numberOfColors: number) {
+    if (!Array.isArray(colorTypes) || colorTypes.length === 0) {
+      throw new Error('colorTypes must be a non-empty array.');
+    }
+    if (numberOfColors <= 0) {
+      throw new Error('numberOfColors must be greater than 0.');
+    }
+
+    const randomColors = this.generateRandomColorTypes(
+      colorTypes,
+      numberOfColors,
+    );
 
     return randomColors.map((color) => this.generateColor(color));
   }

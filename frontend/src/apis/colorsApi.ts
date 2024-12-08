@@ -10,7 +10,7 @@ export async function fetchColorSwatches(
   try {
     const response = await axios.get(COLORS_ENDPOINT, {
       params: {
-        colorTypes: colorTypes.join(","),
+        colorTypes,
         numberOfColors,
       },
     });
