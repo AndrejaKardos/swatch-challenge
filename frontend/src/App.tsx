@@ -1,9 +1,8 @@
 import { useState } from "react";
 import "./App.css";
-import { ColorSwatch } from "./components/colorSwatch";
 import { Color } from "./types/color";
 import { fetchColorSwatches } from "./apis/colorsApi";
-
+import { ColorSwatch } from "./components/ColorSwatch";
 function App() {
   const [colorSwatches, setColorSwatches] = useState<Color[]>([]);
   const [loading, setLoading] = useState(false);
@@ -14,7 +13,7 @@ function App() {
     setError(null);
 
     try {
-      const colors = await fetchColorSwatches();
+      const colors = await fetchColorSwatches(["rgb", "hsl"], 5);
       setColorSwatches(colors);
     } catch (err) {
       setError("Failed to fetch color swatches. Please try again.");
