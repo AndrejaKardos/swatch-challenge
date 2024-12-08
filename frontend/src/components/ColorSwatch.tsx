@@ -9,7 +9,7 @@ interface ColorSwatchProps {
 
 export const ColorSwatch: React.FC<ColorSwatchProps> = ({ color }) => {
   const getColorType = (color: { type: string; [key: string]: any }) => {
-    switch (color.type) {
+    switch (color.type.toLowerCase()) {
       case "rgb":
         return `rgb(${color.red}, ${color.green}, ${color.blue})`;
       case "hsl":
